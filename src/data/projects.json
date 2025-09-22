@@ -1,0 +1,32 @@
+[
+  {
+    "id": "p-mindshelf",
+    "title": "MindShelf",
+    "shortDescription": "Personalized content curation platform to save and manage articles & videos.",
+    "fullDescription": "Developed a full-stack MERN application for users to save, categorize, and manage online content like articles and videos through a responsive interface. Architected a decoupled system with a Node.js REST API and implemented secure Google Sign-In using Firebase Authentication. Deployed on Vercel.",
+    "tech": ["React", "Node.js", "Express", "MongoDB", "Firebase Auth", "Vercel"],
+    "repo": "https://github.com/ARI-SAM",
+    "live": "",
+    "status": "Ongoing"
+  },
+  {
+    "id": "p-isl-translator",
+    "title": "Real-Time ISL to Text Translator",
+    "shortDescription": "Vision-based system that recognizes Indian Sign Language gestures from webcam and translates them to text.",
+    "fullDescription": "Designing a real-time vision-based system to recognize Indian Sign Language (ISL) gestures via a laptop webcam and translate them into text using deep learning models. Implementing convolutional neural networks and Vision Transformers with buffering and sequence modeling to achieve accurate, low-latency translation suitable for accessible communication.",
+    "tech": ["Python", "OpenCV", "PyTorch", "CNN", "Vision Transformer"],
+    "repo": "https://github.com/ARI-SAM/ai-sign-language-converter",
+    "live": "",
+    "status": "Ongoing"
+  },
+  {
+    "id": "p-agv-simulator",
+    "title": "ML-driven AGV Swarm Path Planning Simulator",
+    "shortDescription": "Simulator for IoRT-based AGV swarm with multi-agent coordination and adaptive rerouting.",
+    "fullDescription": "Built an ML-driven simulator for IoRT-based AGV swarm path planning with multi-agent coordination, real-time obstacle avoidance, and adaptive rerouting. Implemented dynamic task allocation and shortest-path algorithms on a 9×9 grid to optimize traffic flow and minimize collisions. Integrated real-time monitoring and predictive analytics for logistics in hospitals and smart warehouses.",
+    "tech": ["HTML", "CSS", "JavaScript", "IoT", "Machine Learning"],
+    "repo": "",
+    "live": "",
+    "status": "Completed"
+  }
+]
