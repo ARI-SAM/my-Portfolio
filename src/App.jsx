@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from 'D:/PORTFOLIO-MINE/my_portfolio/src/components/Navbar/Navbar.jsx';
 import About from './sections/About';
+import Experience from "./sections/Experience";
+import Skills from "./sections/Skills";
 import Projects from './sections/Projects';
 import Resume from './sections/Resume';
 import Contact from './sections/Contact';
@@ -12,6 +14,8 @@ function App() {
     <div id="home">
       <Navbar />
       <About />
+      <Skills />    
+      <Experience />
       <Projects />
       <Resume />
       <Contact />
