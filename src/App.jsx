@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from 'D:/PORTFOLIO-MINE/my_portfolio/src/components/Navbar/Navbar.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
 import About from './sections/About';
 import Experience from "./sections/Experience";
 import Skills from "./sections/Skills";
