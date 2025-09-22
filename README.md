@@ -1,12 +1,34 @@
-# React + Vite
+# 🌐 Aritra Samanta - Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my personal **portfolio website** built with **React (Vite)** and styled with **pure CSS**.  
+It showcases my **skills, experiences, projects, and resume**, and provides ways to contact me.  
 
-Currently, two official plugins are available:
+🔗 **Live Website:** [View Portfolio](https://your-vercel-link.vercel.app)  
+📄 **Resume:** [Download Resume](https://your-vercel-link.vercel.app/resume.pdf)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
+- 🏠 **Home Section** – Introduction with a clean navbar.  
+- 👨‍💻 **About Section** – Short bio with profile picture.  
+- 🛠️ **Skills Section** – Technical skills displayed in a responsive grid.  
+- 💼 **Experience Section** – Professional experiences formatted in cards.  
+- 📂 **Projects Section** – Project cards with details & links.  
+- 📑 **Resume Section** – Direct link to view/download my resume.  
+- 📬 **Contact Section** – EmailJS-powered form to send me messages + social links.  
+- 📌 **Footer Section** – Quick navigation and credits.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+- **React (Vite)** – Frontend framework  
+- **Pure CSS** – Styling & responsiveness  
+- **EmailJS** – Contact form integration  
+- **Vercel** – Deployment & hosting  
+
+---
+## Contact Me
+
+📧 Email: aritra.samanta963@example.com
+💼 LinkedIn: linkedin.com/in/aritra-samanta
+💻 GitHub: github.com/ARI-SAM
