@@ -1,4 +1,7 @@
 /* Default navbar (transparent) */
+/* navbar.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@500&display=swap');
 .navbar {
   background: transparent;
   /* --- UPDATED --- Padding removed to make the background truly edge-to-edge */
@@ -36,9 +39,11 @@
 
 /* Logo */
 .logo {
+  /*font-family: 'Playfair Display', serif;*/
   color: #f5f5f5;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: bold;
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 /* Nav links (desktop) */
@@ -55,6 +60,7 @@
   color: #ddd;
   font-size: 1rem;
   transition: color 0.3s, text-shadow 0.3s;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .nav-links a:hover {
@@ -88,8 +94,17 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile styles (your original code) */
+/* Mobile styles */
 @media (max-width: 768px) {
+  /* This is the new rule that adjusts the logo's position on mobile. */
+  .navbar-container {
+    /* Top-Right-Bottom-Left: This shifts the content to the right */
+    padding: 0 20px 0 35px;
+  }
+  .logo{ 
+    display: flex;
+    padding: 0 20px;
+  }
   .nav-links {
     position: absolute;
     top: 80px;
