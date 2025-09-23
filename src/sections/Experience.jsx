@@ -1,5 +1,4 @@
 import React from "react";
-//import "./Experience.css";
 
 export default function Experience() {
   const experiences = [
@@ -44,7 +43,8 @@ export default function Experience() {
             <h3>{exp.role}</h3>
             <p className="company">{exp.company}</p>
             <p className="duration">{exp.duration}</p>
-            <ul>
+            {/* --- THIS IS THE ONLY LINE THAT CHANGED --- */}
+            <ul className="description-list"> 
               {exp.description.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}

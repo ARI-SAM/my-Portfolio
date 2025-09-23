@@ -1,26 +1,37 @@
-/* Navbar container */
 /* Default navbar (transparent) */
 .navbar {
   background: transparent;
-  padding: 3px 30px;
+  /* --- UPDATED --- Padding removed to make the background truly edge-to-edge */
+  padding: 0;
   position: fixed;
   top: 0;
   height: 100px;
   width: 100%;
   z-index: 100;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-bottom 0.3s ease;
+  /*border-bottom: 2px solid transparent;*/
 }
 
 /* Solid navbar after scroll */
 .navbar.scrolled {
-  background: #522020;  /* solid dark background */
+  background: #111;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #ff3557;
 }
 
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
+  
+  /* These lines keep the content aligned with the panels below */
+  max-width: 1200px; 
+  margin: 0 auto;
+  width: 100%;
+
+  /* --- UPDATED --- Padding is now here to keep content off the screen edges */
+  padding: 0 30px;
 }
 
 /* Logo */
@@ -43,14 +54,15 @@
   text-decoration: none;
   color: #ddd;
   font-size: 1rem;
-  transition: color 0.3s;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
 .nav-links a:hover {
-  color: #ff4d6d;
+  color: #f72b2b;
+  text-shadow: 0 0 8px rgba(255, 76, 96, 0.6);
 }
 
-/* Hamburger (hidden on desktop) */
+/* Hamburger (your original code) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -66,7 +78,6 @@
   transition: all 0.3s;
 }
 
-/* Hamburger active animation */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -77,11 +88,11 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile styles */
+/* Mobile styles (your original code) */
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 0;
     background: #111;
     flex-direction: column;
@@ -89,14 +100,16 @@
     text-align: center;
     gap: 20px;
     padding: 20px 0;
-    display: none; /* hidden by default */
+    display: none;
+    border-left: 2px solid #ff4c60;
   }
 
   .nav-links.open {
-    display: flex; /* show when active */
+    display: flex;
   }
 
   .hamburger {
-    display: flex; /* show hamburger on mobile */
+    display: flex;
   }
 }
+

@@ -1,49 +1,132 @@
-import React, { useRef } from "react";
-import emailjs from "emailjs-com";
-//import "./Contact.css";
+import React, { useRef, useState } from "react";
+// The 'emailjs-com' import has been removed as it's assumed to be loaded globally.
 
 export default function Contact() {
   const form = useRef();
+  
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    from_name: '',
+    from_email: '',
+    message: ''
+  });
+
+  // State for validation errors
+  const [errors, setErrors] = useState({});
+  
+  // State for submission status (e.g., 'sending', 'success', 'error')
+  const [status, setStatus] = useState('');
+
+  // Handle input changes and update state
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  // Validation Function
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    // Rule 1: Name cannot be empty or just spaces
+    if (!formData.from_name.trim()) {
+      newErrors.from_name = "Name is required.";
+      isValid = false;
+    }
+
+    // Rule 2: Message cannot be empty or just spaces
+    if (!formData.message.trim()) {
+      newErrors.message = "Message cannot be empty.";
+      isValid = false;
+    }
+    
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    )
+    if (!validateForm()) {
+      return;
+    }
+    
+    setStatus('sending');
+
+    // --- UPDATED --- 
+    // Replaced import.meta.env with placeholders.
+    // Make sure the EmailJS script is loaded in your main HTML file.
+    const SERVICE_ID = "YOUR_SERVICE_ID";
+    const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+    const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+
+    window.emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
       .then(
         (result) => {
           console.log(result.text);
-          alert("✅ Message sent successfully!");
+          setStatus('success');
+          setFormData({ from_name: '', from_email: '', message: '' });
+          setTimeout(() => setStatus(''), 5000); 
         },
         (error) => {
           console.log(error.text);
-          alert("❌ Something went wrong. Try again.");
+          setStatus('error');
+          setTimeout(() => setStatus(''), 5000);
         }
       );
-
-    e.target.reset();
   };
 
   return (
     <section id="contact" className="container">
       <h2 className="section-title">Contact Me</h2>
-      <p className="section-subtitle">Feel free to reach out 🚀</p>
+      <p className="section-subtitle">Feel free to reach out 😊</p>
 
       {/* Contact Form */}
       <form ref={form} onSubmit={sendEmail} className="contact-form">
-        <input type="text" name="from_name" placeholder="Your Name" required />
-        <input type="email" name="from_email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" className="btn">Send</button>
+        <input 
+          type="text" 
+          name="from_name" 
+          placeholder="Your Name" 
+          required 
+          value={formData.from_name}
+          onChange={handleInputChange}
+        />
+        {errors.from_name && <p style={{color: 'var(--primary-color)', marginTop: '-0.5rem'}}>{errors.from_name}</p>}
+
+        <input 
+          type="email" 
+          name="from_email" 
+          placeholder="Your Email" 
+          required 
+          value={formData.from_email}
+          onChange={handleInputChange}
+        />
+
+        <textarea 
+          name="message" 
+          placeholder="Your Message" 
+          rows="5" 
+          required
+          value={formData.message}
+          onChange={handleInputChange}
+        ></textarea>
+        {errors.message && <p style={{color: 'var(--primary-color)', marginTop: '-0.5rem'}}>{errors.message}</p>}
+
+        <button type="submit" className="btn" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Sending...' : 'Send'}
+        </button>
       </form>
+      
+      {/* Submission Status Message */}
+      {status === 'success' && <p style={{textAlign: 'center', color: '#28a745', marginTop: '1rem'}}>✅ Message sent successfully!</p>}
+      {status === 'error' && <p style={{textAlign: 'center', color: '#dc3545', marginTop: '1rem'}}>❌ Something went wrong. Please try again.</p>}
 
-      {/* Social Links */}
+
+      {/* Social Links (Unchanged) */}
       <div className="social-links-responsive">
-
         <a href="https://www.linkedin.com/in/ari-sam100/" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <svg height="24" width="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ verticalAlign: 'middle' }}>
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.868-3.063-1.868 0-2.156 1.459-2.156 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z" />
@@ -58,7 +141,7 @@ export default function Contact() {
         </a>
       </div>
 
-      {/* Responsive Social Links CSS */}
+      {/* Responsive Social Links CSS (Unchanged) */}
       <style>{`
         .social-links-responsive {
           display: flex;
@@ -95,3 +178,4 @@ export default function Contact() {
     </section>
   );
 }
+

@@ -5,11 +5,47 @@
   box-sizing: border-box;
 }
 
+/* --- NEW --- CSS Variables for new graphics */
+:root {
+    --bg-color: #000000;
+    --surface-color: #1a1a1a;
+    --primary-color: #ff4c73;
+    --primary-hover: #ff767fa1;
+    --primary-glow: rgba(255, 76, 96, 0.15); /* For the glow effect */
+    --text-primary: #f5f5ff;
+    --text-secondary: #aaa;
+    --font-family: 'Poppins', sans-serif;
+}
+
+
+/* --- PASTE THIS CODE IN ITS PLACE --- */
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #0a0a0a;
+
+  /* --- START: Background Image Styles --- */
+  /* This sets your image. It looks for 'background.png' in your public folder. */
+  background-image: url('/background1.png'); 
+
+  /* This ensures the image covers the entire screen without stretching. */
+  background-size: cover; 
+
+  /* This centers the image nicely on the page. */
+  background-position: center center; 
+
+  /* This prevents the image from repeating if the screen is very large. */
+  background-repeat: no-repeat; 
+
+  /* This is the key: it makes the background stay fixed while you scroll over it. */
+  background-attachment: fixed; 
+
+  /* This is a fallback color in case the image fails to load. */
+  background-color: #0a0a0a; 
+  /* --- END: Background Image Styles --- */
+
   color: #fff;
   line-height: 1.6;
+  overflow-x: hidden; 
 }
 
 /* Links */
@@ -31,9 +67,37 @@ html {
 /* Utility classes */
 .container {
   width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 2rem 0;
+  max-width: 1100px; 
+  margin: 4rem auto; 
+  padding: 3rem; 
+  position: relative;
+  background: rgba(26, 26, 26, 0.5); 
+  border-radius: 16px; 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(5px); 
+  -webkit-backdrop-filter: blur(5px); 
+}
+
+/* --- THE FIX IS HERE --- */
+/* This single rule targets the FIRST panel on the page and gives it a large */
+/* top margin to create space for the navbar, without affecting other panels. */
+#home > .container:first-of-type {
+  margin-top: 150px; /* Increased margin to push it down from the navbar */
+}
+
+
+/* --- NEW --- Ambient "Aura" Glow for Sections */
+.container::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(ellipse at 50% 50%, var(--primary-glow) 0%, transparent 70%);
+    filter: blur(60px);
 }
 
 .section-title {
@@ -49,6 +113,8 @@ html {
   color: #aaa;
 }
 
+/* (The rest of your CSS file continues unchanged below) */
+
 /* Buttons */
 .btn {
   padding: 0.7rem 1.5rem;
@@ -60,17 +126,14 @@ html {
   font-weight: 600;
   transition: all 0.3s;
   text-align: center;
-  width: 250px;
-  
+  width: 250px; 
 }
 
 .resume-btn {
-  display:grid;   /* shrink to fit text */
+  display:grid;   
   margin: 0 auto;
-  text-align: center;        /* center horizontally */
-
+  text-align: center;      
 }
-
 
 .btn:hover {
   background-color: #ff7680;
@@ -86,37 +149,6 @@ html {
   }
 }
 
-
-/* NAVBAR */
-.navbar {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  background-color: #111;
-  z-index: 100;
-  padding: 1rem 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.nav-links li {
-  margin-left: 1.5rem;
-}
-
-.nav-links a {
-  font-weight: 500;
-}
-
 /* ABOUT */
 .about-content {
   display: flex;
@@ -128,10 +160,9 @@ html {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect on the whole about section */
 .about-content:hover {
-  box-shadow: 0 8px 25px rgba(255, 76, 96, 0.4); /* pinkish glow */
-  transform: translateY(-5px); /* slight lift */
+  box-shadow: 0 8px 25px rgba(255, 76, 96, 0.4); 
+  transform: translateY(-5px); 
 }
 
 .about-text {
@@ -141,18 +172,22 @@ html {
   line-height: 1.6;
 }
 
+/* Glowing Profile Picture Border */
 .about-image img {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  border-radius: 50%; /* perfect circle */
-  border: 4px solid #ff4c60;
-  transition: transform 0.3s ease;
+  border-radius: 50%;
+  object-position: 50% 25%;
+  /* Gradient Border Technique */
+  padding: 5px; /* Controls border thickness */
+  background: linear-gradient(45deg, var(--primary-color), #8f00f1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Subtle zoom on image hover */
 .about-image img:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 30px var(--primary-glow), 0 0 50px rgba(143, 0, 241, 0.2);
 }
 
 /* Responsive adjustments */
@@ -162,7 +197,6 @@ html {
     text-align: center;
     padding: 1.5rem;
   }
-
   .about-image img {
     width: 180px;
     height: 180px;
@@ -174,7 +208,6 @@ html {
   .about-text {
     font-size: 0.9rem;
   }
-
   .about-image img {
     width: 140px;
     height: 140px;
@@ -193,12 +226,17 @@ html {
   border-radius: 10px;
   margin-bottom: 1.5rem;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s ease;
+  border: 1px solid transparent; /* Start with a transparent border */
 }
 
+/* Glowing Border on Hover for Cards */
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(255,76,96,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-color: rgba(255, 76, 96, 0.5);
+  box-shadow: 0 8px 25px rgba(255, 76, 96, 0.4); 
+  transform: translateY(-5px);
 }
 
 .project-card h3 {
@@ -218,22 +256,17 @@ html {
 }
 
 .project-details.open {
-  max-height: 500px; /* adjust as needed */
+  max-height: 500px;
   padding-top: 1rem;
 }
 
-
-
-/* for project.jsx */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-
-/* contact */
-
+/* contact (No changes as requested) */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -256,10 +289,7 @@ html {
   box-shadow: 0 0 5px #ff4c60;
 }
 
-
-
 /* EXPERIENCE */
-
 .experience-list {
   display: flex;
   flex-direction: column;
@@ -268,16 +298,16 @@ html {
 }
 
 .experience-card {
-  padding: 20px;
+  padding: 2rem;
   border-radius: 10px;
-  background: #1a1a1a;
+  background: var(--surface-color);
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(255,77,109,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .experience-card h3 {
@@ -293,14 +323,39 @@ html {
 .duration {
   font-size: 0.9rem;
   color: #aaa;
+  margin-bottom: 1.5rem; /* --- UPDATED --- Added margin for spacing */
 }
 
-.description {
-  margin-top: 8px;
-  color: #ddd;
-  line-height: 1.5;
+/* --- NEW --- Redesigned Experience Section List */
+.description-list {
+    list-style: none; /* Removes bullet points */
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--primary-color); /* Creates the timeline effect */
 }
 
+.description-list li {
+    position: relative;
+    padding-bottom: 1.2rem;
+    padding-left: 1.5rem;
+    color: #ddd;
+}
+
+.description-list li:last-child {
+    padding-bottom: 0;
+}
+
+.description-list li::before {
+    content: ''; 
+    position: absolute;
+    left: -0.5rem; 
+    top: 5px; 
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    border: 2px solid var(--bg-color); 
+    box-shadow: 0 0 8px var(--primary-color); 
+}
 
 /* SKILLS */
 .skills-grid {
@@ -317,11 +372,30 @@ html {
   text-align: center;
   color: #ddd;
   font-weight: 500;
-  transition: background 0.3s, transform 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
+/* --- UPDATED --- Skill Card Hover Effect */
 .skill-card:hover {
-  background: #ff4d6d;
-  color: #fff;
+  background: var(--surface-color);
+  color: var(--primary-color);
   transform: scale(1.05);
+  box-shadow: 0 0 15px var(--primary-glow);
 }
+
+.navbar .container {
+  /* Step 1: Turn OFF all the glass panel styles */
+  background: none;
+  border: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  /* Step 2: Reset the spacing to how the navbar should behave */
+  margin: 0 auto; /* This centers the content */
+  padding: 0; /* We let the parent .navbar handle the edge padding */
+
+  /* Step 3: Ensure the content inside aligns with the panels below */
+  max-width: 1100px; /* This must match the max-width of your panels */
+}
+
